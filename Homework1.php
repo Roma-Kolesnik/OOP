@@ -39,7 +39,7 @@ class Animal{
     }
 
     public function setFamily($family){
-        $available_families = ['Hare', 'Squirrel', 'Mouse', 'Feline', 'Сanine',
+        $available_families = ['Hare', 'Squirrel', 'Mouse', 'Felidae', 'Сanine',
             'Bear'];
         if(is_string($family) && in_array($family, $available_families)){
             $this->family = $family;
@@ -64,14 +64,54 @@ class Animal{
             return false;
         }
     }
+
+    public function getInfo(){
+        return
+            "Our animal has type ". $this->getType().', '.
+            "class is". $this->getClass().", ".
+            "subclass of mammal is ".$this->getSubclass().', '.
+            'from family'. $this->getFamily().", ".
+            "and it has kind of ". $this->getKind().". ".
+            "The name of cat is " . $this->getNickname(). ', '.
+            'it is '.$this->getAge() .' years old, '.
+            'color is '.$this->getColor(). ', '.
+            'breed is '.$this->getBreed().'.';
+    }
+
+    public function __construct($type, $class, $family, $kind){
+        $this->setType($type);
+        $this->setClass($class);
+        $this->setFamily($family);
+        $this->setKind($kind);
+    }
+
 }
 
 class Mammal extends Animal{
+   private $subclass;
 
+   public function getSubclass(){
+       return $this->subclass;
+   }
+
+    public function setSubclass($subclass){
+        $available_subclass = [
+            "Prototheria", "Monotremata", "Theria", "Metatheria", "Eutheria"
+        ];
+        if(is_string($subclass) && in_array($subclass, $available_subclass)){
+            $this->subclass = $subclass;
+            return true;
+        }else {
+            return false;
+        }
+    }
+    public function __construct($subclass){
+        $this->setSubclass($subclass);
+    }
 }
 
 
-class Cat extends Mammal{
+class Cat extends Mammal {
     private $color, $nickname, $breed, $age;
 
     public function getColor(){
@@ -126,86 +166,23 @@ class Cat extends Mammal{
         }
     }
 
-    /*
-    public function __construct($color, $nickname, $breed, $age){
-        $this->color = $color;
-        $this->nickname = $nickname;
-        $this->breed = $breed;
-        $this->age = $age;
+    public function __construct($nickname, $color, $breed, $age){
+        $this->setNickname($nickname);
+        $this->setColor($color);
+        $this->setBreed($breed);
+        $this->setAge($age);
     }
-    */
-    public function getInfo(){
-        return "The name of cat is " . $this->getNickname(). ', '.
-            'it is '.$this->getAge() .' years old, '.
-        'color is '.$this->getColor(). ', '.
-            'breed is '.$this->getBreed().'.';
-    }
+
+
 }
 
 
 
 
-
-$murzik = new Cat;
-$murzik->setNickname('Murzik');
-$murzik->setAge(5);
-$murzik->setColor('brown');
-$murzik->setBreed('Abyssinian');
+$animal = new Animal("Chordata", "Mammalia", "Felidae", "Cat");
+$mammal = new Mammal("Theria");
+$murzik = new Cat("Murzik", "brown", "Abyssinian", 5);
 echo $murzik->getInfo();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
