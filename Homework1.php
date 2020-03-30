@@ -65,19 +65,6 @@ class Animal{
         }
     }
 
-    public function getInfo(){
-        return
-            "Our animal has type ". $this->getType().', '.
-            "class is". $this->getClass().", ".
-            "subclass of mammal is ".$this->getSubclass().', '.
-            'from family'. $this->getFamily().", ".
-            "and it has kind of ". $this->getKind().". ".
-            "The name of cat is " . $this->getNickname(). ', '.
-            'it is '.$this->getAge() .' years old, '.
-            'color is '.$this->getColor(). ', '.
-            'breed is '.$this->getBreed().'.';
-    }
-
     public function __construct($type, $class, $family, $kind){
         $this->setType($type);
         $this->setClass($class);
@@ -166,13 +153,25 @@ class Cat extends Mammal {
         }
     }
 
+    public function getInfo(){
+        return
+            "Our animal has type ". $this->getType().', '.
+            "class is". $this->getClass().", ".
+            "subclass of mammal is ".$this->getSubclass().', '.
+            'from family'. $this->getFamily().", ".
+            "and it has kind of ". $this->getKind().". ".
+            "The name of cat is " . $this->getNickname(). ', '.
+            'it is '.$this->getAge() .' years old, '.
+            'color is '.$this->getColor(). ', '.
+            'breed is '.$this->getBreed().'.';
+    }
+
     public function __construct($nickname, $color, $breed, $age){
         $this->setNickname($nickname);
         $this->setColor($color);
         $this->setBreed($breed);
         $this->setAge($age);
     }
-
 
 }
 
@@ -183,6 +182,7 @@ $animal = new Animal("Chordata", "Mammalia", "Felidae", "Cat");
 $mammal = new Mammal("Theria");
 $murzik = new Cat("Murzik", "brown", "Abyssinian", 5);
 echo $murzik->getInfo();
+
 
 
 
